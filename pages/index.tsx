@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
 import About from '../components/About'
 import ContactMe from '../components/ContactMe'
 import Experience from '../components/Experience'
@@ -42,6 +44,14 @@ const Home: NextPage = () => {
       <section id="contact" className='snap-start'>
         <ContactMe />
       </section>
+
+      <Link href='#hero'>
+        <footer className='sticky bottom-5 w-full cursor-pointer '>
+          <div className='w-20 h-20 relative hover:grayscale-0 grayscale rounded-full transition-all duration-300'>
+            <Image src="https://i.imgur.com/e2yvD6A.png" layout='fill' objectFit='cover' alt="" />
+          </div>
+        </footer>
+      </Link>
 
     </div>
   )
