@@ -1,9 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { PageInfo } from '../typings'
+import { urlFor } from '../sanity'
 
-type Props = {}
+type Props = {
+    pageInfo: PageInfo
+}
 
-function About({ }: Props) {
+function About({ pageInfo }: Props) {
     return (
         <motion.div
             initial={{
@@ -28,13 +32,13 @@ function About({ }: Props) {
                     opacity: 1,
                 }}
                 viewport={{ once: true }}
-                src='/Juan.jpeg'
+                src={urlFor(pageInfo?.profilePic).url()}
                 className='-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:h-64 md:w-64 xl:h-[400px] xl:w-[400px]'
             />
             <div className="space-y-10 px-0 md:px-10">
                 <h4 className='text-4xl font-semibold'>Here&apos;s a <span className='underline decoration-blue-400/50'>little</span> background</h4>
                 <p className='text-base'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius officia necessitatibus amet, vitae iusto in ullam debitis. Nisi cupiditate dolorem, dolore sint at suscipit, velit expedita ab id voluptates dolor! Expedita ab dolorem porro inventore, ad itaque blanditiis eligendi consequuntur commodi quia minus recusandae, cum consequatur tempore sapiente doloremque maiores ullam consectetur, adipisci provident laboriosam aliquid perferendis libero rerum. Ex voluptate illo tempore ratione expedita consectetur vitae doloremque, molestiae nostrum non commodi amet dicta provident cupiditate esse quisquam perspiciatis vel, quod sit aut earum nisi iusto nam. Quo recusandae odit doloremque ducimus sunt minima! Harum aperiam magnam ea iusto exercitationem!
+                    {pageInfo?.backgroundInformation}
                 </p>
             </div>
         </motion.div>

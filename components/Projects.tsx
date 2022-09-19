@@ -1,13 +1,14 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { Project } from '../typings'
+import { urlFor } from '../sanity'
 
-type Props = {}
+type Props = {
+    projects: Project[]
+}
 
-function Projects({ }: Props) {
-    const projects = [
-        1, 2, 3
-    ]
+function Projects({ projects }: Props) {
     return (
         <motion.div
             initial={{
@@ -32,12 +33,12 @@ function Projects({ }: Props) {
                             transition={{ duration: 1.2 }}
                             viewport={{ once: true }}
                             className="w-32 h-32 relative">
-                            <Image src="/Guarapo.png" alt="project image" layout='fill' objectFit='cover' />
+                            <Image src={urlFor(project?.image).url()} alt="project image" layout='fill' objectFit='cover' />
                         </motion.div>
                         <div className='space-y-10 px-0 md:px-10 max-w-[1000px]'>
-                            <h4 className='text-4xl font-semibold text-center'> <span className='underline decoration-blue-400/50'>Case Study {index + 1} of {projects.length}:</span> example</h4>
+                            <h4 className='text-4xl font-semibold text-center'> <span className='underline decoration-blue-400/50'>Case Study {index + 1} of {projects.length}:</span> {project?.title}</h4>
 
-                            <p className="text-lg text-center md:text-left">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit, ullam laudantium. Rem quis maiores saepe laboriosam esse dicta at aperiam.</p>
+                            <p className="text-lg text-center md:text-left">{project?.summary}</p>
                         </div>
                     </div>
                 ))}
