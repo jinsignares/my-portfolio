@@ -56,12 +56,12 @@ const Home = ({ pageInfo, experiences, skills, socials, projects }: Props) => {
       </section>
 
       <section id="contact" className='snap-start'>
-        <ContactMe />
+        <ContactMe pageInfo={pageInfo} />
       </section>
 
       <Link href='#hero'>
-        <footer className='sticky bottom-5 w-full cursor-pointer '>
-          <div className='hidden md:flex w-20 h-20 ml-10 relative hover:grayscale-0 grayscale rounded-full transition-all duration-300'>
+        <footer className='hidden md:flex sticky bottom-5 w-full cursor-pointer '>
+          <div className='w-20 h-20 ml-10 relative hover:grayscale-0 grayscale rounded-full transition-all duration-300'>
             Top
           </div>
         </footer>

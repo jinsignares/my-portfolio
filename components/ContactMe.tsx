@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { PageInfo } from '../typings'
 
 type Inputs = {
     name: string,
@@ -10,9 +11,11 @@ type Inputs = {
     message: string,
 }
 
-type Props = {}
+type Props = {
+    pageInfo: PageInfo
+}
 
-function ContactMe({ }: Props) {
+function ContactMe({ pageInfo }: Props) {
     const { register, handleSubmit } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (formData) => {
         window.location.href = `mailto:judaingo@gmail.com?subject=${formData.subject}&body=Hi my name is ${formData.name}, ${formData.message}`;
@@ -27,23 +30,19 @@ function ContactMe({ }: Props) {
             <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-lg md:text-2xl'>Contact Me</h3>
 
             <div className='mt-20 flex flex-col space-y-4 md:space-y-10'>
-                <h4 className='md:text-2xl font-semibold text-center my-10 md:my-0'>
-                    I have got just what you need.{" "}
-                    <span className='underline decoration-blue-400/50'>Lets. Talk.</span>
-                </h4>
                 <div className='space-y-4 md:space-y-8'>
                     <a href='tel:+57 300 660 2179' className="flex items-center space-x-5 justify-start md:justify-center cursor-pointer w-full" >
                         <PhoneIcon className='text-blue-400 h-7 w-7 animate-pulse' />
-                        <p className='text-xs md:text-xl'>+57 300 660 2179</p>
+                        <p className='text-xs md:text-xl'>{pageInfo.phoneNumber}</p>
                     </a>
                     <a href='mailto:judaingo@gmail.com' className="flex items-center space-x-5 justify-start md:justify-center cursor-pointer w-full" >
 
                         <EnvelopeIcon className='text-blue-400 h-7 w-7 animate-pulse' />
-                        <p className='text-xs md:text-xl'>judaingo@gmail.com</p>
+                        <p className='text-xs md:text-xl'>{pageInfo.email}</p>
                     </a>
                     <div className="flex items-center space-x-5 justify-start md:justify-center w-full" >
                         <MapPinIcon className='text-blue-400 h-7 w-7 animate-pulse' />
-                        <p className='text-xs md:text-xl text-left md:text-center'>Barranquilla, Colombia</p>
+                        <p className='text-xs md:text-xl text-left md:text-center'>{pageInfo.address}</p>
                     </div>
                 </div>
 
