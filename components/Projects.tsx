@@ -26,10 +26,9 @@ function Projects({ projects }: Props) {
                     <div className='flex flex-shrink-0 w-full flex-col justify-center items-center snap-center space-y-5 relative md:p-44 h-screen' key={index}>
                         <motion.div
                             initial={{
-                                y: -300,
                                 opacity: 0
                             }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            whileInView={{ opacity: 1 }}
                             transition={{ duration: 1.2 }}
                             viewport={{ once: true }}
                             className="w-32 h-32 relative">

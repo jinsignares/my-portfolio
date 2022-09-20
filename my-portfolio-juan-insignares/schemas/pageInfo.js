@@ -22,6 +22,16 @@ export default {
       }
     },
     {
+      name: "prompts",
+      title: "Promtps",
+      type: "array",
+      of: [
+        {
+          type: "string"
+        }
+      ]
+    },
+    {
       name: "backgroundInformation",
       title: "BackgroundInformation",
       type: "string",

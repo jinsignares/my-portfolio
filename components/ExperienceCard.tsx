@@ -10,7 +10,7 @@ type Props = {
 
 function ExperienceCard({ experience }: Props) {
     return (
-        <article className='flex flex-col rounded-lg items-center justify-center space-y-7 flex-shrink-0 w-[calc(100%-40px)] md:w-[600px] xl:w-[900px] snap-center p-10 bg-[#292929] transition-opacity duration-200 overflow-hidden opacity-100 md:opacity-40 hover:opacity-100'>
+        <article className='flex flex-col rounded-lg items-center justify-start space-y-7 flex-shrink-0 w-[calc(100%-40px)] md:w-[600px] xl:w-[900px] snap-center px-4 py-8 bg-[#292929] transition-opacity duration-200 overflow-hidden opacity-100 md:opacity-40 hover:opacity-100'>
             <motion.div
                 initial={{
                     opacity: 0
@@ -18,11 +18,12 @@ function ExperienceCard({ experience }: Props) {
                 transition={{ duration: 1.2 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="flex relative rounded-lg overflow-hidden w-32 h-32 xl:h-[100px] xl:w-[100px] object-cover object-center p-10">
+                className="flex relative rounded-lg overflow-hidden w-24 h-24 xl:h-[100px] xl:w-[100px] object-cover object-center p-10">
                 <Image
                     layout="fill"
                     src={urlFor(experience?.companyImage).url()}
                     alt="Guarapo"
+                    objectFit='cover'
                 />
             </motion.div>
             <div className='px-0 md:px-10'>
@@ -36,8 +37,8 @@ function ExperienceCard({ experience }: Props) {
                         </div>
                     ))}
                 </div>
-                <p className='py-3 md:py-5 text-gray-300'>From {experience?.dateStarted} to {experience?.isCurrentlyWorkingHere ? 'Now' : experience?.dateEnded}</p>
-                <ul className='list-disc space-y-4 ml-5 text-sm md:text-lg'>
+                <p className='pb-3 md:py-5 text-gray-300'>From {experience?.dateStarted} to {experience?.isCurrentlyWorkingHere ? 'Now' : experience?.dateEnded}</p>
+                <ul className='list-disc space-y-2 md:space-y-4 ml-5 text-sm md:text-lg'>
                     {experience?.points.map((point, index) => (
                         <li key={index}>{point}</li>
                     ))}
