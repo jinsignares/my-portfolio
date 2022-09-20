@@ -21,9 +21,9 @@ function Projects({ projects }: Props) {
             className='h-screen flex relative flex-col text-center md:text-left md:flex-row max-w-full px-10 justify-evenly mx-auto items-center z-0'>
             <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'>Projects</h3>
 
-            <div className='relative w-full flex overflow-x-scroll overflow-y-hidden snap-mandatory snap-x z-20'>
+            <div className='relative flex overflow-x-scroll overflow-y-hidden snap-mandatory snap-x z-20'>
                 {projects.map((project, index) => (
-                    <div className='flex flex-shrink-0 w-screen flex-col justify-center items-center snap-center space-y-5 relative md:p-44 h-screen' key={index}>
+                    <div className='flex flex-shrink-0 w-full flex-col justify-center items-center snap-center space-y-5 relative md:p-44 h-screen' key={index}>
                         <motion.div
                             initial={{
                                 y: -300,
