@@ -17,18 +17,12 @@ function Skills({ skills }: Props) {
             <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-lg md:text-2xl">Skills</h3>
             <h3 className='hidden md:flex absolute top-36 tracking-[3px] text-gray-300 text-sm'>Hover over a skill for current proficiency</h3>
 
-            <div className="md:hidden grid grid-cols-4 gap-3">
-                {skills?.map((skill) => (
-                    <Skill key={skill._id} skill={skill} directionLeft />
-                ))}
-            </div>
-            
-            <div className="hidden md:grid grid-cols-6 gap-5 py-32">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-5 py-32">
                 {skills?.slice(0, skills.length / 2).map((skill) => (
-                    <Skill key={skill._id} skill={skill} directionLeft />
+                    <Skill key={skill._id} skill={skill} />
                 ))}
                 {skills?.slice(skills.length / 2, skills.length).map((skill) => (
-                    <Skill key={skill._id} skill={skill} />
+                    <Skill key={skill._id} skill={skill} directionLeft />
                 ))}
             </div>
             

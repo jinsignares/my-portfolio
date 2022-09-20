@@ -18,12 +18,12 @@ function ExperienceCard({ experience }: Props) {
                 transition={{ duration: 1.2 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="flex relative rounded-lg overflow-hidden w-24 h-24 xl:h-[100px] xl:w-[100px] object-cover object-center p-10">
+                className="flex relative rounded-lg overflow-hidden w-24 h h-24 xl:h-[100px] xl:w-[100px] object-cover object-center p-10 bg-white">
                 <Image
                     layout="fill"
                     src={urlFor(experience?.companyImage).url()}
                     alt="Guarapo"
-                    objectFit='cover'
+                    objectFit='contain'
                 />
             </motion.div>
             <div className='px-0 md:px-10'>
@@ -31,7 +31,7 @@ function ExperienceCard({ experience }: Props) {
                 <p className='font-bold text-lg md:text-2xl mt-1'>{experience?.company}</p>
                 <div className="flex space-x-2 my-2 items-center">
                     {experience?.technologies.map((technology) => (
-                        <div key={technology._id} className="flex bg-white w-10 h-10 overflow-hidden rounded-full relative">
+                        <div key={technology._id} className="flex bg-white w-8 h-8 overflow-hidden rounded-full relative">
                             <Image src={urlFor(technology?.image).url()}
                                 layout='fill' alt="logo" objectFit='cover' />
                         </div>
