@@ -5,6 +5,13 @@ export const fetchExperiences = async () => {
 
     const data = await res.json()
     const experiences: Experience[] = data.experiences
-
-    return experiences
+    
+    return experiences.map(experience => {
+        if (experience.isCurrentlyWorkingHere) {
+            return {
+                ...experience,
+                dateEnded: new Date().valueOf()
+            }
+        } else { return experience }
+    })
 }
