@@ -47,11 +47,11 @@ const Home = ({ pageInfo, experiences, skills, socials, projects }: Props) => {
         <Experience experiences={experiences} />
       </section>
 
-      <section id="skills" className="snap-start">
+      <section id="skills" className="snap-center">
         <Skills skills={skills} />
       </section>
 
-      <section id="projects" className="snap-start">
+      <section id="projects" className="snap-center">
         <Projects projects={projects} />
       </section>
 
@@ -61,8 +61,8 @@ const Home = ({ pageInfo, experiences, skills, socials, projects }: Props) => {
 
       <Link href='#hero'>
         <footer className='sticky bottom-5 w-full cursor-pointer '>
-          <div className='hidden md:flex w-20 h-20 relative hover:grayscale-0 grayscale rounded-full transition-all duration-300'>
-            <Image src="https://i.imgur.com/e2yvD6A.png" layout='fill' objectFit='cover' alt="" />
+          <div className='hidden md:flex w-20 h-20 ml-10 relative hover:grayscale-0 grayscale rounded-full transition-all duration-300'>
+            Top
           </div>
         </footer>
       </Link>
