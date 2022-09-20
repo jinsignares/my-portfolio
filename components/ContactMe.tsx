@@ -26,10 +26,10 @@ function ContactMe({ pageInfo }: Props) {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
-            className='h-screen flex relative overflow-hidden flex-col md:text-left text-center md:flex-row max-x-7xl px-10 mx-auto justify-evenly items-center'>
+            className='h-screen flex relative overflow-hidden flex-col md:text-left text-center md:flex-row max-x-7xl px-10 mx-auto justify-start items-center'>
             <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-lg md:text-2xl'>Contact Me</h3>
 
-            <div className='mt-20 flex flex-col space-y-4 md:space-y-10'>
+            <div className='mt-40 w-full flex flex-col space-y-4 md:space-y-10'>
                 <div className='space-y-4 md:space-y-8'>
                     <a href='tel:+57 300 660 2179' className="flex items-center space-x-5 justify-start md:justify-center cursor-pointer w-full" >
                         <PhoneIcon className='text-blue-400 h-7 w-7 animate-pulse' />
