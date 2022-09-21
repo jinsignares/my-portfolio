@@ -59,6 +59,9 @@ export interface Project extends SanityBody {
     linkToBuild: string;
     summary: string;
     technologies: Technology[];
+    dateStarted: date;
+    dateEnded: date;
+    isCurrentlyWorkingOn: boolean;
 }
 
 export interface Social extends SanityBody {

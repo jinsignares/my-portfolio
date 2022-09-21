@@ -29,9 +29,29 @@ export default {
       type: "string",
     },
     {
+      name: "phase",
+      title: "Phase",
+      type: "string",
+    },
+    {
       name: "linkToBuild",
       title: "LinkToBuild",
       type: "url"
-    }
+    },
+    {
+      name: "dateStarted",
+      title: "DateStarted",
+      type: "date",
+    },
+    {
+      name: "dateEnded",
+      title: "DateEnded",
+      type: "date",
+    },
+    {
+      name: "isCurrentlyWorkingOn",
+      title: "IsCurrentlyWorkingOn",
+      type: "boolean",
+    },
   ]
 }
