@@ -26,7 +26,7 @@ function ContactMe({ pageInfo }: Props) {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
-            className='h-screen flex relative overflow-hidden flex-col md:text-left text-center md:flex-row max-x-7xl px-10 mx-auto justify-start items-center'>
+            className='h-screen flex relative overflow-hidden flex-col md:text-left text-center md:flex-row max-x-7xl px-10 mx-auto justify-center items-center'>
             <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-lg md:text-2xl'>Contact Me</h3>
 
             <div className='mt-40 w-full flex flex-col space-y-4 md:space-y-10'>

@@ -37,7 +37,7 @@ function About({ pageInfo }: Props) {
                     <Image src={urlFor(pageInfo?.profilePic).url()} layout="fill" alt='profilepic' objectFit='cover' />
                 </motion.div>
                 <div className="space-y-4 px-0 md:px-10">
-                    <h4 className='text-xl md:text-4xl font-semibold'>Here&apos;s a <span className='underline decoration-blue-400/50'>little</span> background</h4>
+                    <h4 className='text-xl md:text-4xl font-semibold'>Something about <span className='underline decoration-blue-400/50'>myself</span> </h4>
                     <p className='text-sm md:text-base'>
                         {pageInfo?.backgroundInformation}
                     </p>

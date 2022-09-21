@@ -22,6 +22,11 @@ export default {
       type: "string",
     },
     {
+      name: "location",
+      title: "Location",
+      type: "string",
+    },
+    {
       name: "dateStarted",
       title: "DateStarted",
       type: "date",

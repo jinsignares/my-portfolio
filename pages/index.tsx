@@ -1,3 +1,4 @@
+import { ArrowUpIcon } from '@heroicons/react/24/solid'
 import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -60,9 +61,9 @@ const Home = ({ pageInfo, experiences, skills, socials, projects }: Props) => {
       </section>
 
       <Link href='#hero'>
-        <footer className='hidden md:flex sticky bottom-5 w-full cursor-pointer '>
+        <footer className='hidden md:flex sticky bottom-0 w-full cursor-pointer '>
           <div className='w-20 h-20 ml-10 relative hover:grayscale-0 grayscale rounded-full transition-all duration-300'>
-            Top
+            <ArrowUpIcon className='w-7 h-7 text-blue-400/80' />
           </div>
         </footer>
       </Link>

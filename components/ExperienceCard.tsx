@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Experience } from '../typings'
 import { urlFor } from '../sanity'
+import { MapPinIcon } from '@heroicons/react/24/solid'
 
 type Props = {
     experience: Experience
@@ -29,7 +30,7 @@ function ExperienceCard({ experience }: Props) {
             <div className='px-0 md:px-10'>
                 <h4 className='text-xl md:text-4xl font-light md:mb-4'>{experience?.jobTitle}</h4>
                 <p className='font-bold text-lg md:text-2xl mt-1'>{experience?.company}</p>
-                <div className="flex space-x-4 my-2 items-start justify-start">
+                <div className="flex space-x-4 my-2 items-start justify-start h-[64px]">
                     {experience?.technologies.map((technology) => (
                         <div key={technology._id} className="flex flex-col items-center justify-center space-y-2 w-[40px] text-clip">
                             <div className="flex bg-white w-8 h-8 overflow-hidden rounded-sm relative">
@@ -40,8 +41,12 @@ function ExperienceCard({ experience }: Props) {
                         </div>
                     ))}
                 </div>
-                <p className='pb-3 md:py-5 text-gray-300 text-xs md:text-base'>From {experience?.dateStarted.slice(0, -3)} to {experience?.isCurrentlyWorkingHere ? 'Currently working here' : experience?.dateEnded.slice(0, -3)}</p>
-                <ul className='list-disc space-y-2 md:space-y-4 ml-5 text-sm md:text-lg'>
+                <div className="flex space-x-2 items-center justify-start mb-3">
+                    <MapPinIcon className='text-blue-400 h-4 w-4 animate-pulse' />
+                    <p className='text-gray-300 text-xs md:text-base'>{experience.location}</p>
+                </div>
+                <p className='pb-3 text-gray-300 text-xs md:text-base'>From {experience?.dateStarted.slice(0, -3)} to {experience?.isCurrentlyWorkingHere ? 'Currently' : experience?.dateEnded.slice(0, -3)}</p>
+                <ul className='list-disc space-y-2 md:space-y-4 ml-5 text-sm md:text-lg text-justify'>
                     {experience?.points.map((point, index) => (
                         <li key={index}>{point}</li>
                     ))}
