@@ -19,7 +19,7 @@ function ExperienceCard({ experience }: Props) {
                 transition={{ duration: 1.2 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="flex relative rounded-lg overflow-hidden w-24 h h-24 xl:h-[100px] xl:w-[100px] object-cover object-center p-10 bg-white">
+                className="flex flex-shrink-0 relative rounded-lg overflow-hidden w-24 h h-24 xl:h-[100px] xl:w-[100px] object-cover object-center p-10 bg-white">
                 <Image
                     layout="fill"
                     src={urlFor(experience?.companyImage).url()}
@@ -41,14 +41,14 @@ function ExperienceCard({ experience }: Props) {
                         </div>
                     ))}
                 </div>
-                <div className="flex space-x-2 items-center justify-start mb-3">
+                <div className="flex space-x-2 items-center justify-start mb-2">
                     <MapPinIcon className='text-blue-400 h-4 w-4 animate-pulse' />
                     <p className='text-gray-300 text-xs md:text-base'>{experience.location}</p>
                 </div>
-                <p className='pb-3 text-gray-300 text-xs md:text-base'>From {experience?.dateStarted.slice(0, -3)} to {experience?.isCurrentlyWorkingHere ? 'Currently' : experience?.dateEnded.slice(0, -3)}</p>
+                <p className='mb-2 text-gray-300 text-xs md:text-base'>From {experience?.dateStarted.slice(0, -3)} to {experience?.isCurrentlyWorkingHere ? 'Currently' : experience?.dateEnded.slice(0, -3)}</p>
                 <ul className='list-disc space-y-2 md:space-y-4 ml-5 text-sm md:text-lg text-justify'>
                     {experience?.points.map((point, index) => (
-                        <li key={index}>{point}</li>
+                        <li key={index} className="text-xs">{point}</li>
                     ))}
                 </ul>
             </div>
