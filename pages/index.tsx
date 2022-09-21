@@ -56,7 +56,7 @@ const Home = ({ pageInfo, experiences, skills, socials, projects }: Props) => {
         <Projects projects={projects} />
       </section>
 
-      <section id="contact" className='snap-start'>
+      <section id="contact" className='snap-end'>
         <ContactMe pageInfo={pageInfo} />
       </section>
 
