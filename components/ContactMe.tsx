@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { PageInfo } from '../typings'
+import { fetchEmail } from '../utils/fetchEmail'
 
 type Inputs = {
     name: string,
@@ -16,9 +17,15 @@ type Props = {
 }
 
 function ContactMe({ pageInfo }: Props) {
-    const { register, handleSubmit } = useForm<Inputs>();
+    const [visible, setVisible] = useState(false)
+    const { register, handleSubmit, reset } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (formData) => {
-        window.location.href = `mailto:judaingo@gmail.com?subject=${formData.subject}&body=Hi my name is ${formData.name}, ${formData.message}`;
+        fetchEmail(formData)
+        reset()
+        setVisible(true)
+        setTimeout(() => {
+            setVisible(false)
+        }, 2000);
     }
 
     return (
@@ -59,6 +66,14 @@ function ContactMe({ pageInfo }: Props) {
                     <textarea
                         placeholder='Message' {...register('message')} className='contactInput resize-none' />
                     <button className='bg-blue-400 py-3 px-2 md:py-5 md:px-10 rounded-md text-gray-100 font-bold outline-none hover:bg-blue-300 hover:text-gray-200 transition-colors duration-300'>Submit</button>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: visible ? 1 : 0}}
+                        transition={{ duration: 1.0 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        Thanks for Reaching out!
+                    </motion.p>
                 </form>
             </div>
         </motion.div>

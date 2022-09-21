@@ -70,3 +70,10 @@ export interface Social extends SanityBody {
     title: string;
     url: string;
 }
+
+export interface FormData {
+    email: string;
+    name: string;
+    subject: string;
+    message: string;
+}
