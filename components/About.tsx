@@ -23,14 +23,12 @@ function About({ pageInfo }: Props) {
             <div className="flex relative flex-col text-center md:text-left md:flex-row max-w-7xl justify-start mx-auto items-center mt-4 mb-10 ">
                 <motion.div
                     initial={{
-                        x: -200,
                         opacity: 0,
                     }}
                     transition={{
                         duration: 1.2
                     }}
                     whileInView={{
-                        x: 0,
                         opacity: 1,
                     }}
                     viewport={{ once: true }}

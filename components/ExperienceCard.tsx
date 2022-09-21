@@ -29,15 +29,18 @@ function ExperienceCard({ experience }: Props) {
             <div className='px-0 md:px-10'>
                 <h4 className='text-xl md:text-4xl font-light md:mb-4'>{experience?.jobTitle}</h4>
                 <p className='font-bold text-lg md:text-2xl mt-1'>{experience?.company}</p>
-                <div className="flex space-x-2 my-2 items-center">
+                <div className="flex space-x-4 my-2 items-start justify-start">
                     {experience?.technologies.map((technology) => (
-                        <div key={technology._id} className="flex bg-white w-8 h-8 overflow-hidden rounded-full relative">
-                            <Image src={urlFor(technology?.image).url()}
-                                layout='fill' alt="logo" objectFit='cover' />
+                        <div key={technology._id} className="flex flex-col items-center justify-center space-y-2 w-[40px] text-clip">
+                            <div className="flex bg-white w-8 h-8 overflow-hidden rounded-sm relative">
+                                <Image src={urlFor(technology?.image).url()}
+                                    layout='fill' alt="logo" objectFit='cover' />
+                            </div>
+                            <p className="text-[8px] text-center">{technology.title}</p>
                         </div>
                     ))}
                 </div>
-                <p className='pb-3 md:py-5 text-gray-300'>From {experience?.dateStarted} to {experience?.isCurrentlyWorkingHere ? 'Now' : experience?.dateEnded}</p>
+                <p className='pb-3 md:py-5 text-gray-300 text-xs md:text-base'>From {experience?.dateStarted.slice(0, -3)} to {experience?.isCurrentlyWorkingHere ? 'Currently working here' : experience?.dateEnded.slice(0, -3)}</p>
                 <ul className='list-disc space-y-2 md:space-y-4 ml-5 text-sm md:text-lg'>
                     {experience?.points.map((point, index) => (
                         <li key={index}>{point}</li>
