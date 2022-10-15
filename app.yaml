@@ -1,5 +1,15 @@
-runtime: custom
-env: standard
+runtime: nodejs17 # or another supported version
+
+instance_class: F1
+
+handlers:
+- url: /(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /.*
+  static_files: build/index.html
+  upload: build/index.html
+
 env_variables:
   NEXT_PUBLIC_SANITY_DATASET: production
   NEXT_PUBLIC_SANITY_PROJECT_ID: pnlga7sb
