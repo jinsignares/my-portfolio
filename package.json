@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 8080",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ci": "yarn install --frozen-lockfile"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.11",
