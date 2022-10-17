@@ -15,7 +15,6 @@ jobs:
     name: Deploy Sanity
     steps:
       - uses: actions/checkout@v2
-      - name: Change directory
         working-directory: ./my-portfolio-juan-insignares
       - uses: sanity-io/github-action-sanity@v0.2-alpha
         env:
