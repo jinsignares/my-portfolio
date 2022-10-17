@@ -1,5 +1,5 @@
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
-import type { GetStaticProps } from 'next'
+import type { GetServerSideProps, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -74,7 +74,7 @@ const Home = ({ pageInfo, experiences, skills, socials, projects }: Props) => {
 
 export default Home
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo()
   const socials: Social[] = await fetchSocials()
   const skills: Skill[] = await fetchSkills()
