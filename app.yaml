@@ -1,12 +1,10 @@
-runtime: nodejs16 # or another supported version
-
-instance_class: F1
-
+env: standard
+runtime: nodejs16
+service: default
 handlers:
-- url: /.*
-  secure: always
-  redirect_http_response_code: 301
-  script: auto
+  - url: /.*
+    secure: always
+    script: auto
 
 env_variables:
   NEXT_PUBLIC_SANITY_DATASET: production
