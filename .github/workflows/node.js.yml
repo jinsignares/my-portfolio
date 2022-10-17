@@ -11,17 +11,18 @@ on:
 
 jobs:
   sanity-deploy:
-      runs-on: ubuntu-18.04
-      name: Deploy Sanity
-      steps:
-        - uses: actions/checkout@v2
-        - uses: sanity-io/github-action-sanity@v0.2-alpha
-          env:
-            SANITY_AUTH_TOKEN: skGELLxE9LqZDeljAUj4eRSpAMa6AQyHqaY7dKfckg1nnSFIZiNLjHg7cS1cBQNcTZ46OEe7nrU3BNDDcRjwccDd9RtWoOOrsXWQcrYEhrJmpGdsNFALd90h0NrKRDG70yg58ICVCTcxQkBFoaE3VyqM1Q10jCyFaICySnFJIQrlUr3FAei7
-          with:
-            args: deploy
+    runs-on: ubuntu-18.04
+    name: Deploy Sanity
+    steps:
+      - uses: actions/checkout@v2
+      - name: Change directory
+        working-directory: ./my-portfolio-juan-insignares
+      - uses: sanity-io/github-action-sanity@v0.2-alpha
+        env:
+          SANITY_AUTH_TOKEN: skGELLxE9LqZDeljAUj4eRSpAMa6AQyHqaY7dKfckg1nnSFIZiNLjHg7cS1cBQNcTZ46OEe7nrU3BNDDcRjwccDd9RtWoOOrsXWQcrYEhrJmpGdsNFALd90h0NrKRDG70yg58ICVCTcxQkBFoaE3VyqM1Q10jCyFaICySnFJIQrlUr3FAei7
+        with:
+          args: deploy
   build:
-
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SANITY_DATASET: production
