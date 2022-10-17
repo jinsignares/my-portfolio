@@ -8,7 +8,7 @@ steps:
   env:
     - NEXT_PUBLIC_SANITY_DATASET=production
     - NEXT_PUBLIC_SANITY_PROJECT_ID=pnlga7sb
-    - NEXT_PUBLIC_BASE_URL=https://my-portfolio-363222.uc.r.appspot.com/ 
+    - NEXT_PUBLIC_BASE_URL=https://my-portfolio-363222.uc.r.appspot.com 
     - NEXT_PUBLIC_SENDGRID_API_KEY=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
 - name: node:17.6.0
   entrypoint: yarn
