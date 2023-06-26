@@ -85,6 +85,5 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     props: {
       pageInfo, experiences, socials, skills, projects
     },
-    revalidate: 10,
   }
 }
