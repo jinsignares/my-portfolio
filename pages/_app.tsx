@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             console.log('Ref parameter found:', ref)
 
             // Send the ref to the webhook via POST
-            const response = await fetch('https://app.comarketing.com/api/webhook/conversion', {
+            const response = await fetch('https://staging.comarketing.com/api/webhook/conversion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
