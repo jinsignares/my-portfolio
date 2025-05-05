@@ -24,7 +24,7 @@ async function sendRefVisitToWebhook(refCode: string | null) {
 
   console.log(`Tracking visit with ref: ${refCode}`);
   try {
-    const response = await fetch('https://app.comarketing.com/api/webhook', { // Webhook URL from the new script
+    const response = await fetch('https://staging.comarketing.com/api/webhook', { // Webhook URL from the new script
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
