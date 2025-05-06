@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Script 
         id="comarketing-pixel-script" // It's good practice to add an id
-        src="https://storage.googleapis.com/comarketing-bucket/scripts/comarketing-pixel.js" 
+        src="https://storage.googleapis.com/comarketing-bucket/scripts/comarketing-pixel-debug.js" 
         strategy="afterInteractive" // Loads after the page is interactive
         // onError can be added here for error handling if the script fails to load
         // onLoad can be added here if you need to run code after the script has loaded
