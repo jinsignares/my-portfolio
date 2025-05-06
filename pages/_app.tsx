@@ -6,15 +6,15 @@ import { useEffect } from 'react'
 
 const SESSION_STORAGE_KEY = 'comarketing_ref_code'; // Key for sessionStorage
 
-// Helper function to get URL parameters
+// Helper function to get URL parameters (from the new script)
 function getParameterByName(name: string, url = typeof window !== 'undefined' ? window.location.href : ''): string | null {
-  if (!url) return null; // Add check for server-side rendering or unavailable window
-  name = name.replace(/[\[\]]/g, '\\$&');
+  if (!url) return null;
+  name = name.replace(/[\\[\\]]/g, '\\\\$&'); // Escaped backslashes for regex in string
   const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
-  if (!results) return null; // Not found
-  if (!results[2]) return ''; // Found but no value
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\\\\+/g, ' ')); // Escaped backslash for regex in string
 }
 
 // Logic to track the VISIT via Webhook
@@ -53,7 +53,7 @@ function addRefToFormSubmission(refCode: string | null) {
   // Find the form element - ADJUST SELECTOR IF NEEDED
   const form = document.querySelector('form');
   if (!form) {
-    // console.log('No form found on this page.'); // Keep commented as per original script
+    console.log('No form found on this page.'); // Keep commented as per original script
     return;
   }
 
@@ -74,69 +74,67 @@ function addRefToFormSubmission(refCode: string | null) {
     }
   };
 
-  // Remove previous listener if it exists (safety measure in React strict mode or HMR)
-  // Note: This simple approach might not perfectly handle all re-render scenarios.
-  // For robustness, consider storing the listener reference or using a different strategy.
-  // form.removeEventListener('submit', submitListener); // Needs reference stability
-
   form.addEventListener('submit', submitListener, { capture: false });
-
-  // Optional: Return a cleanup function for useEffect to remove listener on component unmount/re-render
-  // return () => {
-  //   if (form) {
-  //     form.removeEventListener('submit', submitListener, { capture: false });
-  //   }
-  // };
 }
 
 
 // --- React Component ---
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // Use useEffect to run the tracking logic on the client side after mount
   useEffect(() => {
-    // --- Main execution flow (equivalent to DOMContentLoaded) ---
-    let refCodeFromUrl = getParameterByName('ref'); // Check current URL for 'ref'
-    let refCodeForForm: string | null = null; // This will hold the code to inject into the form
-
-    // 1. Check URL for ref code?
-    if (refCodeFromUrl) {
-      console.log(`Ref code found in URL: ${refCodeFromUrl}. Storing in sessionStorage.`);
+    // Renamed and updated function based on the new script
+    async function sendRefToWebhook() {
       try {
-        sessionStorage.setItem(SESSION_STORAGE_KEY, refCodeFromUrl);
-        refCodeForForm = refCodeFromUrl; // Use this code for potential form on *this* page
-        sendRefVisitToWebhook(refCodeFromUrl); // Track the initial visit
-      } catch (e) {
-          console.error("SessionStorage is unavailable or full.", e);
-          refCodeForForm = refCodeFromUrl; // Still try to use it for the current page form if storage fails
-          // Optionally send webhook even if storage fails?
-          // sendRefVisitToWebhook(refCodeFromUrl); // Decided based on original script logic (only send if stored)
-      }
-    } else {
-       console.log('No ref code in URL. Checking sessionStorage.');
-       try {
-           refCodeForForm = sessionStorage.getItem(SESSION_STORAGE_KEY);
-            if (refCodeForForm) {
-                 console.log(`Ref code retrieved from sessionStorage: ${refCodeForForm}`);
+        const verifyId = getParameterByName('verifyId');
+        if (verifyId) {
+            console.log('verifyId parameter found:', verifyId);
+            const verifyResponse = await fetch('https://staging.comarketing.com/api/webhook/verifyScript', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ verifyId: verifyId })
+            });
+            
+            if (verifyResponse.ok) {
+                const responseData = await verifyResponse.json();
+                console.log('Verification Response:', responseData);
             } else {
-                 console.log('No ref code found in sessionStorage.');
+                console.error('Error sending verification data:', verifyResponse.status);
             }
-       } catch (e) {
-           console.error("Could not read from sessionStorage.", e);
-       }
+            return; // Exit if verifyId was processed
+        }
+
+        const ref = getParameterByName('ref');
+        if (!ref) {
+            console.log('The "ref" parameter was not found in the URL (and no verifyId was present).');
+            return;
+        }
+
+        console.log('ref parameter found (and no verifyId was present):', ref);
+        const response = await fetch('https://staging.comarketing.com/api/webhook/conversion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ref: ref })
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            console.log('Server Response (for ref):', responseData);
+        } else {
+            console.error('Error sending ref data:', response.status);
+        }
+      } catch (error) {
+          console.error('Error in tracking script execution:', error);
+      }
     }
 
-    // 2. Attempt to find a form and add the submit listener
-    const cleanupFormListener = addRefToFormSubmission(refCodeForForm);
+    // Execute the function (equivalent to DOMContentLoaded)
+    sendRefToWebhook();
 
-    // Optional: Return cleanup function from useEffect
-    // return () => {
-    //   if (cleanupFormListener) {
-    //     cleanupFormListener();
-    //   }
-    // };
-
-  }, []); // Empty dependency array ensures this runs once per page load/navigation on the client
+  }, []); // Empty dependency array ensures this runs once per page load on the client
 
   return <Component {...pageProps} />
 }
