@@ -4,6 +4,7 @@ import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { PageInfo } from '../typings'
 import { fetchEmail } from '../utils/fetchEmail'
+import { useRouter } from 'next/router'
 
 type Inputs = {
     name: string,
@@ -17,15 +18,13 @@ type Props = {
 }
 
 function ContactMe({ pageInfo }: Props) {
+    const router = useRouter()
     const [visible, setVisible] = useState(false)
     const { register, handleSubmit, reset } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = (formData) => {
-        fetchEmail(formData)
+    const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+        await fetchEmail(formData)
         reset()
-        setVisible(true)
-        setTimeout(() => {
-            setVisible(false)
-        }, 2000);
+        window.open('/thank-you', '_blank')
     }
 
     return (
