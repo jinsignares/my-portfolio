@@ -7,15 +7,6 @@ import { useRouter } from 'next/router'
 export default function ThankYou() {
     const router = useRouter()
 
-    // Redirect to home after 5 seconds
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            router.push('/')
-        }, 5000)
-
-        return () => clearTimeout(timeout)
-    }, [router])
-
     return (
         <div className='bg-[rgb(36,36,36)] text-white h-screen flex flex-col items-center justify-center px-4'>
             <Head>
